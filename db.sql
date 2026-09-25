@@ -79,3 +79,4 @@ ADD CONSTRAINT `course_id`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
+DELETE FROM `student_management_system`.`users` WHERE (`id` = '0');

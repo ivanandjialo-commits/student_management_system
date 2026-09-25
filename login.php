@@ -39,9 +39,23 @@ $password = $_POST["password"] ?? ""; // if no "??""" = may show an error
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <style>
         body{
-            background-color: #f1f5f9;
+            background-image: url("assets/ChatGPT Image Sep 24, 2026, 11_13_11 PM.png");
+            background-repeat: no-repeat;
+            height: 92vh;
+            background-size: cover;
+        }
+        .title{
+            color: blue;
+            font-weight: bold;
+        }
+        .description{
+            color: lightgrey;
         }
         .login-card{
+            border-radius: 20px;
+        }
+        .form-control{
+            padding: 12px;
             border-radius: 20px;
         }
     </style>
@@ -49,8 +63,8 @@ $password = $_POST["password"] ?? ""; // if no "??""" = may show an error
 <body>
     <div class="container">
         <div class="text-center mt-5">
-            <h1>Student Management System</h1>
-            <p>Welcome! Please login first</p>
+            <h1 class="title">Student Management System</h1>
+            <p class="description">Welcome! Please login first</p>
         </div>
         <div class="d-flex justify-content-center align-items-center" style="height: 500px;">
             <div class="col-md-5">
@@ -73,9 +87,9 @@ $password = $_POST["password"] ?? ""; // if no "??""" = may show an error
                             <input type="password" name="password" class="form-control" placeholder="******">
                         </div>
 
-                        <button class="btn btn-outline-primary w-100">Login</button>
+                        <button class="btn btn-primary w-100">Login</button>
                     </form>
-                    <p class="text-center mt-3">Not account? <a href="register.php">Please click here</a></p>
+                    <p class="text-center mt-3">Not account? Please <a href="register.php">click here</a></p>
                 </div>
             </div>
         </div>
