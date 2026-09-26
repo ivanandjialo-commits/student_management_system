@@ -1,21 +1,21 @@
 <?php
 session_start();
 
-$db = new PDO("mysql:host=localhost;dbname=student_management_system;", "root", "");
+$db = new PDO("mysql:host=localhost;dbname=student_management_system;", "root", ""); // connect database
 
 $error = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-$username = $_POST["username"] ?? ""; // got username will get it , if no will empty
+$username = $_POST["username"] ?? ""; // get username, if no will empty
 $password = $_POST["password"] ?? ""; // if no "??""" = may show an error
 
-    $statement = $db->prepare("SELECT * FROM users WHERE username = ?");
+    $statement = $db->prepare("SELECT * FROM users WHERE username = ?"); // prepare the query
     $statement->execute([$username]);
 
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    $user = $statement->fetch(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get data using column names
 
-    if($user && password_verify($password, $user['password'])){
-        $_SESSION["user"] = $user;
+    if($user && password_verify($password, $user['password'])){ // User exists + password is correct.  // $user['password'] ： check database
+        $_SESSION["user"] = $user;  // $user ： in sql find user data  // $_SESSION: store login data
 
         if($user["role"] == "admin"){
             header("Location: admin.php");
@@ -66,7 +66,7 @@ $password = $_POST["password"] ?? ""; // if no "??""" = may show an error
             <h1 class="title">Student Management System</h1>
             <p class="description">Welcome! Please login first</p>
         </div>
-        <div class="d-flex justify-content-center align-items-center" style="height: 500px;">
+        <div class="d-flex justify-content-center align-items-center" style="height: 550px;">
             <div class="col-md-5">
                 <div class="card login-card p-3">
                 <h1 class="text-center">Login</h1>

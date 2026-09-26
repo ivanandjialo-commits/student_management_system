@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $statement = $db->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
     $statement->execute([$username, $email]);
-    $user = $statement->fetch(PDO::FETCH_ASSOC); // use column name to get data
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     if($user){
         $error = "Username or email already exists";
@@ -67,7 +67,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             <h1 class="title">Student Management System</h1>
             <p class="description">Welcome! if you not account Please Sign In.</p>
         </div>
-        <div class="d-flex justify-content-center align-items-center" style="height: 500px;">
+        <div class="d-flex justify-content-center align-items-center" style="height: 550px;">
                 <div class="col-md-5">
                     <div class="card card-login p-3">
                         <h2 class="text-center">Register</h2>
