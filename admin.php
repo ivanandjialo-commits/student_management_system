@@ -77,7 +77,7 @@ if(!isset($_SESSION['user'])){
                     <div class="icon">👨‍🏫</div>
                     <h4>Teachers</h4>
                     <p>Manage teachers</p> 
-                    <a href="" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Teachers </a>  
+                    <a href="manage-teacher.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Teachers </a>  
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">

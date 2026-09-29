@@ -69,7 +69,7 @@ if(!isset($_SESSION['user'])){
                     <div class="icon">👨‍🎓</div>
                     <h4>Students</h4>
                     <p>View students</p> 
-                    <a href="" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> View Students</a>  
+                    <a href="view-student.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> View Students</a>  
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -77,7 +77,7 @@ if(!isset($_SESSION['user'])){
                     <div class="icon">👨‍🏫</div>
                     <h4>Teachers</h4>
                     <p>View teachers</p> 
-                    <a href="" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> View Teachers</a>  
+                    <a href="view-teachers.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> View Teachers</a>  
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">

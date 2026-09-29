@@ -8,16 +8,6 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-if(isset($_GET['delete'])){ // check request
-    $id = $_GET['delete'];
-
-    $statement = $db->prepare("DELETE FROM student WHERE id = ?"); // prepare to delete
-    $statement->execute([$id]); // execute delete
-
-    header("Location: manage-student.php");
-    exit;
-}
-
 $statement = $db->prepare("SELECT * FROM student"); // get data
 $statement->execute(); // run the sql
 $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get data using column names
@@ -52,9 +42,9 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
             color: white;
             padding: 10px;
         }
-        .table tbody td{  
+        .table tbody td{
             padding: 15px;
-             vertical-align: middle; /* make center */ 
+            vertical-align: middle; /* make center */
         }
         .table tbody tr:hover td{ 
             background-color: #99d0e9; 
@@ -65,17 +55,14 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
 <body>
     <div class="container py-5">
         <div class="manage-student">
-            <h1 class="title">Manage Students</h1>
+            <h1 class="title">View Students</h1>
             <p class="description">Manage student information</p>
         </div>
 
         <div class="student-box">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>Manage List</h4>
+                <h4>Student List</h4>
                 <div>
-                    <a href="student-add.php" class="btn btn-outline-success me-2">
-                        <i class="bi bi-plus-lg"></i>Add
-                    </a>
                     <a href="admin.php" class="btn btn-outline-danger">Back</a>
                 </div>
             </div>
@@ -87,20 +74,15 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                     <?php foreach($students as $student): ?> <!--  -->
+                    <?php foreach($students as $student): ?>
                         <tr>
-                            <td><?= $student['id'] ?></td> <!-- show the student name -->
+                            <td><?= $student['id'] ?></td>
                             <td><?= $student['name'] ?></td>
                             <td><?= $student['email'] ?></td>
                             <td><?= $student['phone'] ?></td>
-                            <td>
-                            <a href="student-edit.php?id=<?= $student['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="manage-student.php?delete=<?= $student['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>  <!-- ?delete= tell php, get the id  -->
-                            </td>
                         </tr>
                         <?php endforeach; ?>
                 </tbody>
