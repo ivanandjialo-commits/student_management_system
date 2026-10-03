@@ -8,7 +8,7 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-$id = $_GET['id']; // get the form url
+$id = $_GET['id']; // URL ?id=1
 
 $statement = $db->prepare("SELECT * FROM student WHERE id = ?"); // find the id
 $statement->execute([$id]); // put ID in ?
@@ -77,4 +77,3 @@ if(isset($_POST['edit'])){ // check button clicked?
     </div>
 </body>
 </html>
-<!-- <p></p> -->

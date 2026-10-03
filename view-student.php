@@ -53,7 +53,7 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
     </style>
 </head>
 <body>
-    <div class="container py-5">
+    <div class="container py-5"> <!-- py-5 : padding: 48px -->
         <div class="manage-student">
             <h1 class="title">View Students</h1>
             <p class="description">Manage student information</p>
@@ -77,7 +77,7 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($students as $student): ?>
+                    <?php foreach($students as $student): ?> <!-- 一个一个显示学生 -->
                         <tr>
                             <td><?= $student['id'] ?></td>
                             <td><?= $student['name'] ?></td>

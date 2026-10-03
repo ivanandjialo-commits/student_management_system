@@ -35,7 +35,7 @@ eat lunch , playing games and sleep.
 
 
 ### Blockers / Challenges
-no problem. Every thing is ok.
+no problem. Everything is ok.
 
 
 ### What I learned

@@ -8,19 +8,26 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-if(isset($_GET['delete'])){ //检查 URL 有没有 delete
-    $id = $_GET['delete'];
+if(isset($_GET['delete'])){ // Check if the URL has "delete"
+    $id = $_GET['delete']; // get course id
 
-    $statement = $db->prepare("DELETE FROM teachers WHERE id = ?"); // prepare to delete
-    $statement->execute([$id]); // execute delete
+    $statement = $db->prepare("DELETE FROM courses WHERE id = ?"); // prepare SQL
+    $statement->execute([$id]); // put id in ? 
 
-    header("Location: manage-teacher.php");
+    header("Location: manage-courses.php");
     exit;
 }
-
-$statement = $db->prepare("SELECT * FROM teachers"); // get data
-$statement->execute(); // run the sql
-$teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get data using column names
+                           // get data from courses
+                           // teachers.name AS teacher_name = 获取老师的名字，并把它叫做 teacher_name
+                           // get data from courses table
+                           // 连接 teachers 表, 用 teacher_id to find the matching teachers
+$statement = $db->prepare("SELECT courses.*,  
+                            teachers.name AS teacher_name 
+                            FROM courses
+                            JOIN teachers ON courses.teacher_id = teachers.id
+");
+$statement->execute(); // run the SQL
+$courses = $statement->fetchAll(PDO::FETCH_ASSOC); // get all data
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +38,7 @@ $teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <style>
+        <style>
         body{
             background-color: #eff6ff;
         }
@@ -42,7 +49,7 @@ $teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
         .description{
             color: #64748b;
         }
-        .student-box{
+        .courses-list{
             background: white;
             padding: 25px;
             border-radius: 20px;
@@ -64,47 +71,44 @@ $teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
 </head>
 <body>
     <div class="container py-5">
-        <div class="manage-student">
-            <h1 class="title">Manage Teachers</h1>
-            <p class="description">Manage teachers information</p>
-        </div>
+        <h1 class="title">Courses List</h1>
+        <p class="description">Manage courses information</p>
 
-        <div class="student-box">
+        <div class="courses-list">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>Manage List</h4>
+                <h4>Courses List</h4>
                 <div>
-                    <a href="teachers-add.php" class="btn btn-outline-success me-2">
+                    <a href="courses-add.php" class="btn btn-outline-success me-2">
                         <i class="bi bi-plus-lg"></i>Add
                     </a>
                     <a href="admin.php" class="btn btn-outline-danger">Back</a>
                 </div>
             </div>
-            
             <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+                        <th>Course_name</th>
+                        <th>Description</th>
+                        <th>Teacher_Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                     <?php foreach($teachers as $teacher): ?> <!-- 一个一个显示老师 -->
+                    <?php foreach($courses as $course): ?> <!-- 一个一个显示老师 -->
                         <tr>
-                            <td><?= $teacher['id'] ?></td> <!-- show the teacher name -->
-                            <td><?= $teacher['name'] ?></td>
-                            <td><?= $teacher['email'] ?></td>
-                            <td><?= $teacher['phone'] ?></td>
+                            <td><?= $course['id']?></td>
+                            <td><?= $course['name']?></td> <!-- show the course name -->
+                            <td><?= $course['description']?></td>
+                            <td><?= $course['teacher_name']?></td>
                             <td>
-                            <a href="teacher-edit.php?id=<?= $teacher['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="manage-teacher.php?delete=<?= $teacher['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>  <!-- ?delete= tell php, get the id  -->
+                                <a href="course-edit.php?id=<?= $course['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                                <a href="manage-courses.php?delete=<?= $course['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a> <!-- 删除这个课程，并把 ID 传给 PHP -->
                             </td>
                         </tr>
                         <?php endforeach; ?> <!-- foreach loop  -->
                 </tbody>
-            </table>
+            </table> 
         </div>
     </div>
 </body>

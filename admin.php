@@ -85,7 +85,7 @@ if(!isset($_SESSION['user'])){
                     <div class="icon">📚</div>
                     <h4>Courses</h4>
                     <p>Manage Courses</p> 
-                    <a href="" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Courses</a>  
+                    <a href="manage-courses.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Courses</a>  
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">

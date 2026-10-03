@@ -8,7 +8,7 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-if(isset($_GET['delete'])){ // check request
+if(isset($_GET['delete'])){ //检查 URL 有没有 delete
     $id = $_GET['delete'];
 
     $statement = $db->prepare("DELETE FROM student WHERE id = ?"); // prepare to delete
@@ -91,7 +91,7 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
                     </tr>
                 </thead>
                 <tbody>
-                     <?php foreach($students as $student): ?> <!--  -->
+                     <?php foreach($students as $student): ?> <!-- 一个一个显示老师 -->
                         <tr>
                             <td><?= $student['id'] ?></td> <!-- show the student name -->
                             <td><?= $student['name'] ?></td>
@@ -102,7 +102,7 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
                             <a href="manage-student.php?delete=<?= $student['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>  <!-- ?delete= tell php, get the id  -->
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach; ?> <!-- foreach loop  -->
                 </tbody>
             </table>
         </div>

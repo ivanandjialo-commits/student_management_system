@@ -9,12 +9,12 @@ if(!isset($_SESSION['user'])){
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
 if(isset($_POST['add'])){
-    $name = $_POST['name'];
+    $name = $_POST['name']; // get the name by user
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
-    $statement = $db->prepare("INSERT INTO teachers (name, email, phone) VALUES (?, ?, ?)");
-    $statement->execute([$name, $email, $phone]);
+    $statement = $db->prepare("INSERT INTO teachers (name, email, phone) VALUES (?, ?, ?)"); // prepare the SQL
+    $statement->execute([$name, $email, $phone]); // put data in ? 
 
     header("Location: manage-teacher.php");
     exit;
@@ -47,7 +47,7 @@ if(isset($_POST['add'])){
     </style>
 </head>
 <body>
-    <div class="container py-5">
+    <div class="container py-5"> <!-- py-5 : padding: 48px -->
         <h1 class="title">Add Teachers</h1>
         <p class="description">Add teachers information</p>
         <div class="student-box">

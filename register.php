@@ -38,6 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         body{
             background-image: url("assets/ChatGPT Image Sep 24, 2026, 11_13_11 PM.png");
@@ -46,18 +47,28 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             background-size: cover;
         }
         .title{
-            color: blue;
+            color: white;
             font-weight: bold;
         }
         .description{
-            color: lightgrey;
+            color: white;
         }
         .card-login{
-            border-radius: 15px;
+            border: none;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .card-login h2{
+            color: #2563eb;
+            font-weight: bold;
         }
         .form-control{
             padding: 12px;
             border-radius: 20px;
+        }
+        .card-login a{
+            font-weight: bold;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -84,7 +95,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                                 <label for="form-label">Password:</label>
                                 <input type="password" name="password" class="form-control" placeholder="******">
                             </div>
-                            <button class="btn btn-primary w-100">Register</button>
+                            <button class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right"></i> Register</button>
                         </form>
                         <p class="text-center mt-3">If you got account? Please <a href="login.php">Click here</a></p>
                     </div>
