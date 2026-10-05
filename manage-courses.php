@@ -8,11 +8,11 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-if(isset($_GET['delete'])){ // Check if the URL has "delete"
+if(isset($_GET['delete'])){ //检查 URL 有没有 delete = ？
     $id = $_GET['delete']; // get course id
 
     $statement = $db->prepare("DELETE FROM courses WHERE id = ?"); // prepare SQL
-    $statement->execute([$id]); // put id in ? 
+    $statement->execute([$id]); // 执行删除
 
     header("Location: manage-courses.php");
     exit;

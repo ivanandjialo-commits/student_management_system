@@ -44,32 +44,33 @@ how to connect the php in HTML, and learn code.
 
 ---
 
-## Day 2 — Date: ____
+## Day 2 — Date: _4/10/2026___
 
 ### What I planned to do today
-
+do manage-result.php add, edit , delete button
 
 ### What I actually did
-
+tap code, learn code and how to design the website
 
 ### Blockers / Challenges
+none
 
 
 ### What I learned
-
+learn how to like student_id become student_name and course_id become course_name
 
 ---
 
-## Day 3 — Date: ____
+## Day 3 — Date: __5/10/2026__
 
 ### What I planned to do today
-
+do result-add.php and beautify admin admin.php
 
 ### What I actually did
-
+using css to beautify and used PHP
 
 ### Blockers / Challenges
-
+none
 
 ### What I learned
 

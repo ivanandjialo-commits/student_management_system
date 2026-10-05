@@ -52,28 +52,30 @@ if(isset($_POST['add'])){ // 检查 Add button 有没有被按?
     <div class="container py-5">
         <h1>Add courses</h1>
         <p>Add student information</p>
-        <form method="POST">
-            <div class="mb-3">
-                <label for="">Courses_name:</label>
-                <input type="text" name="name" class="form-control" placeholder="Enter your Course_name">
-            </div>
-            <div class="mb-3">
-                <label for="">Description:</label>
-                <textarea name="description" rows="5" class="form-control" placeholder="Enter your description"></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="">Teacher_Name:</label>
-                <select name="teacher_id" class="form-control">
-                    <?php foreach($teachers as $teacher): ?>   <!-- 一个一个显示老师 -->
-                        <option value="<?= $teacher['id'] ?>"> <!-- 保存老师的 ID -->
-                            <?= $teacher['name'] ?>  <!-- 显示老师的名字 -->
-                        </option>
+        <div class="student-box">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="">Courses_name:</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter your Course_name">
+                </div>
+                <div class="mb-3">
+                    <label for="">Description:</label>
+                    <textarea name="description" rows="5" class="form-control" placeholder="Enter your description"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="">Teacher_Name:</label>
+                    <select name="teacher_id" class="form-control">
+                        <?php foreach($teachers as $teacher): ?>   <!-- 一个一个显示老师 -->
+                            <option value="<?= $teacher['id'] ?>"> <!-- 保存老师的 ID -->
+                                <?= $teacher['name'] ?>  <!-- 显示老师的名字 -->
+                            </option>
                         <?php endforeach; ?>
-                </select>
-            </div>
-            <button class="btn btn-outline-success" type="submit" name="add">Add courses</button>
-            <a href="manage-courses.php" class="btn btn-outline-danger">Back</a>
-        </form>
+                    </select>
+                </div>
+                <button class="btn btn-outline-success" type="submit" name="add">Add courses</button>
+                <a href="manage-courses.php" class="btn btn-outline-danger">Back</a>
+            </form>
+        </div>
     </div>
 </body>
 </html>

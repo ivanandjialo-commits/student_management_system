@@ -17,36 +17,68 @@ if(!isset($_SESSION['user'])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         body{
-            background-color: #eff6ff;
+            background-color: #f1f5f9;
+            font-family: Arial, sans-serif;
+        }
+        .container{
+            max-width: 1150px;
         }
         .title{
-            color: blue;
+            color: #1e3a8a;
             font-weight: bold;
+            font-size: 36px;
+            margin-bottom: 8px;
         }
         .description{
-            color: lightgray;
+            color: #64748b;
+            margin-bottom: 30px;
         }
         .hero{
-            background: linear-gradient(135deg, #7e14e8, #5b48b0);
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             border-radius: 20px;
             padding: 40px;
+            margin-bottom: 30px ;
         }
         .icon{
             font-size: 45px;
+            margin-bottom: 10px;
         }
         .logout{
             border-radius: 10px;
+            padding: 10px;
             width: 200px;
         }
         .welcome{
             color: white;
+            font-weight: bold;
         }
         .welcome-text{
             color: #dbeafe;
         }
         .card{
-            border: none;
+            background: white;
+            border: 1px solid #e2e8f0;
             border-radius: 18px;
+            padding: 20px;
+            height: 100%;
+            transition: 0.2s;
+        }
+        .card:hover{
+            transform: translateY(-5px);
+            border-color: #93c5fd;
+        }
+        .card h4{
+            color: #1e293b;
+            font-weight: bold;
+        }
+        .card p{
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .card .btn{
+            background: #2563eb;
+            border: none;
+            border-radius: 10px;
             padding: 10px;
         }
     </style>
@@ -93,7 +125,7 @@ if(!isset($_SESSION['user'])){
                     <div class="icon">📊</div>
                     <h4>Results</h4>
                     <p>Manage Results</p> 
-                    <a href="" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Results</a>  
+                    <a href="manage-result.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Results</a>  
                 </div>
             </div>
         </div>

@@ -4,16 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .hero{
-            background-color: #333131;
-            color: #ccc;
-            border-radius: 20px;
-            padding: 45px;
-        }
-    </style>
 </head>
 <body>
-    <input type="number">
+    
 </body>
 </html>

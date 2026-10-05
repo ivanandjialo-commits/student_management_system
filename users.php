@@ -15,41 +15,83 @@ if(!isset($_SESSION['user'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <style>
-        body{
-            background-color: #eff6ff;
-        }
-        .title{
-            color: blue;
-            font-weight: bold;
-        }
-        .description{
-            color: lightgray;
-        }
-        .hero{
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            border-radius: 20px;
-            padding: 40px;
-        }
-        .icon{
-            font-size: 45px;
-        }
-        .logout{
-            border-radius: 10px;
-            width: 200px;
-        }
-        .welcome{
-            color: white;
-        }
-        .welcome-text{
-            color: #dbeafe;
-        }
-        .card{
-            border: none;
-            border-radius: 18px;
-            padding: 10px;
-        }
-    </style>
+<style>
+    body{
+        background: #faf5ff;
+        font-family: Arial, sans-serif;
+    }
+
+    .title{
+        color: #7e22ce;
+        font-weight: bold;
+        font-size: 36px;
+        margin-bottom: 8px;
+    }
+
+    .description{
+        color: #64748b;
+        margin-bottom: 30px;
+    }
+
+    .hero{
+        background: #7e22ce;
+        border-radius: 20px;
+        padding: 35px;
+        margin-bottom: 30px;
+    }
+
+    .welcome{
+        color: white;
+        font-weight: bold;
+    }
+
+    .welcome-text{
+        color: #f3e8ff;
+    }
+
+    .card{
+        background: white;
+        border: 1px solid #e9d5ff;
+        border-radius: 15px;
+        padding: 20px;
+        height: 100%;
+        transition: 0.2s;
+    }
+
+    .card:hover{
+        border-color: #a855f7;
+    }
+
+    .icon{
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .card h4{
+        color: #581c87;
+        font-weight: bold;
+    }
+
+    .card p{
+        color: #64748b;
+        margin-bottom: 20px;
+    }
+
+    .card .btn{
+        background: #9333ea;
+        border: none;
+        border-radius: 8px;
+    }
+
+    .card .btn:hover{
+        background: #7e22ce;
+    }
+
+    .logout{
+        width: 180px;
+        border-radius: 8px;
+    }
+</style>
 </head>
 <body>
     <div class="container py-5">
