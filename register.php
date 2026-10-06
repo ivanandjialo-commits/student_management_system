@@ -1,28 +1,28 @@
 <?php
 session_start();
 
-$db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
+$db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", ""); // connect database
 
-$success = "";
+$success = ""; // 储存成功信息
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $username = $_POST["username"];
+if($_SERVER['REQUEST_METHOD'] == "POST"){ // 检查表单有没有提交
+    $username = $_POST["username"]; // 取得用户输入的 Username
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $statement = $db->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
-    $statement->execute([$username, $email]);
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    $statement = $db->prepare("SELECT * FROM users WHERE username = ? OR email = ?"); // 检查 Username 或 Email 是否已经存在
+    $statement->execute([$username, $email]); // 执行 SQL
+    $user = $statement->fetch(PDO::FETCH_ASSOC); // 取得找到的用户资料
 
-    if($user){
+    if($user){ // 如果用户已经存在 
         $error = "Username or email already exists";
     } else {
-        $password = password_hash($password, PASSWORD_DEFAULT); // protect the password
+        $password = password_hash($password, PASSWORD_DEFAULT); // 加密密码 // protect the password
     
 
-    $statement = $db->prepare("INSERT INTO users(username, email, password) VALUES (?, ?, ?)");
+    $statement = $db->prepare("INSERT INTO users(username, email, password) VALUES (?, ?, ?)"); // 准备把新用户加入数据库
 
-    $statement->execute([$username, $email, $password]); // execute()= run query
+    $statement->execute([$username, $email, $password]); // 执行 SQL
 
     $success = "Register sucessful! You can login";
     header("Location: login.php");

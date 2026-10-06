@@ -77,19 +77,19 @@ none
 
 ---
 
-## Day 4 — Date: ____
+## Day 4 — Date: __6/10/2026__
 
 ### What I planned to do today
-
+do admin:result-edit.php and users:view-result.php
 
 ### What I actually did
-
+do result-edit.php and learn code.
 
 ### Blockers / Challenges
-
+got error. but its fixed
 
 ### What I learned
-
+how to repair error
 
 ---
 

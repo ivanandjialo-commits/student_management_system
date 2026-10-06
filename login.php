@@ -5,19 +5,20 @@ $db = new PDO("mysql:host=localhost;dbname=student_management_system;", "root", 
 
 $error = "";
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-$username = $_POST["username"] ?? ""; // get username, if no will empty
-$password = $_POST["password"] ?? ""; // if no "??""" = may show an error
+if($_SERVER["REQUEST_METHOD"] == "POST"){ // 检查 Login Form 有没有使用 POST 提交
+$username = $_POST["username"] ?? ""; // 获取用户输入的 Username // ?? "" = 如果没有 Username，就使用空白
+$password = $_POST["password"] ?? ""; 
 
-    $statement = $db->prepare("SELECT * FROM users WHERE username = ?"); // prepare the query
-    $statement->execute([$username]);
+    $statement = $db->prepare("SELECT * FROM users WHERE username = ?");  // 准备 SQL，根据 Username 找用户
+    $statement->execute([$username]); // 执行 SQL
 
-    $user = $statement->fetch(PDO::FETCH_ASSOC); // fetchAll: get all users PDO::FETCH_ASSOC ：get data using column names
+    $user = $statement->fetch(PDO::FETCH_ASSOC);  // 获取找到的用户资料
+       // 用户存在 //检查 Password
+    if($user && password_verify($password, $user['password'])){ // 检查用户存在，而且 Password 正确
+        // 保存用户资料      // 用户资料
+        $_SESSION["user"] = $user;  // 把登录用户资料保存到 Session 
 
-    if($user && password_verify($password, $user['password'])){ // User exists + password is correct.  // $user['password'] ： check database
-        $_SESSION["user"] = $user;  // $user ： in sql find user data  // $_SESSION: store login data
-
-        if($user["role"] == "admin"){
+        if($user["role"] == "admin"){ // 检查用户是不是 Admin
             header("Location: admin.php");
         } else {
             header("Location: users.php");

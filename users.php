@@ -135,7 +135,7 @@ if(!isset($_SESSION['user'])){
                     <div class="icon">📊</div>
                     <h4>Results</h4>
                     <p>View Results</p> 
-                    <a href="" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> View Results</a>  
+                    <a href="view-result.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> View Results</a>  
                 </div>
             </div>
         </div>
