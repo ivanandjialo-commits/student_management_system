@@ -72,7 +72,7 @@ $courses = $statement->fetchAll(PDO::FETCH_ASSOC); // get all data
                     <a href="users.php" class="btn btn-outline-danger">Back</a>
                 </div>
             </div>
-            <table class="table">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>ID</th>

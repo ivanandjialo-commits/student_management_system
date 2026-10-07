@@ -40,32 +40,62 @@ $courses = $statement->fetchAll(PDO::FETCH_ASSOC); // get all data
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <style>
         body{
-            background-color: #eff6ff;
+            background-color: #f1f5f9;
+        }
+        .container{
+            max-width: 1150px;
         }
         .title{
             color: #1e40af;
             font-weight: bold;
+            font-size: 36px;
+            margin-bottom: 8px;
         }
         .description{
             color: #64748b;
+            margin-bottom: 30px;
         }
-        .courses-list{
+        .student-box{
             background: white;
-            padding: 25px;
-            border-radius: 20px;
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+        }
+        .student-box h4{
+            color: #1e293b;
+            font-weight: bold;
+        }
+        .table{
+            margin-bottom: 0;
         }
         .table thead th{
             background: #1e40af;
             color: white;
-            padding: 10px;
+            padding: 14px;
         }
         .table tbody td{  
             padding: 15px;
              vertical-align: middle; /* make center */ 
+             color: #334155;
         }
         .table tbody tr:hover td{ 
-            background-color: #99d0e9; 
-            color: white;
+            background-color: #accefb; 
+            color: #1e3a8a;
+        }
+        .btn{
+            border-radius: 8px;
+        }
+        .btn-outline-success{
+            padding: 8px 16px;
+        }
+        .btn-outline-danger{
+            padding: 8px 16px;
+        }
+        .btn-outline-primary,
+        .btn-outline-warning{
+            width: 42px;
+            height: 38px;
+            padding: 7px;
         }
     </style>
 </head>
@@ -84,7 +114,7 @@ $courses = $statement->fetchAll(PDO::FETCH_ASSOC); // get all data
                     <a href="admin.php" class="btn btn-outline-danger">Back</a>
                 </div>
             </div>
-            <table class="table">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>ID</th>

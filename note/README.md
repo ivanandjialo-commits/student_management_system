@@ -93,18 +93,19 @@ how to repair error
 
 ---
 
-## Day 5 — Date: ____
+## Day 5 — Date: __7/10/2026__
 
 ### What I planned to do today
-
+create grade-book.php and rework users:view-result.php
 
 ### What I actually did
-
+do grade-book.php and view-result.php
 
 ### Blockers / Challenges
-
+no problem
 
 ### What I learned
+.......
 
 
 ---

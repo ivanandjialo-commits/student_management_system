@@ -79,11 +79,11 @@ if(isset($_POST['add'])){ // 检查用户有没有按 Add Resul
                 </div>
                 <div class="mb-3">
                     <label for="">Score:</label>
-                    <input type="number" name="marks" class="form-control" placeholder="Enter student course">
+                    <input type="number" name="marks" class="form-control" placeholder="Enter student score ">
                 </div>
                 <div class="mb-3">
                     <label for="">Grade:</label>
-                    <input type="text" name="grade" class="form-control" placeholder="Enter student course">
+                    <input type="text" name="grade" class="form-control" placeholder="Enter student grade">
                 </div>
                 <button class="btn btn-outline-success" name="add">Add Result</button>
                 <a href="manage-result.php" class="btn btn-outline-danger">Back</a>

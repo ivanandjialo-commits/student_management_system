@@ -96,7 +96,7 @@ if(!isset($_SESSION['user'])){
         </div>
         
         <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="card text-center p-4">
                     <div class="icon">👨‍🎓</div>
                     <h4>Students</h4>
@@ -104,7 +104,7 @@ if(!isset($_SESSION['user'])){
                     <a href="manage-student.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Students</a>  
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="card text-center p-4">
                     <div class="icon">👨‍🏫</div>
                     <h4>Teachers</h4>
@@ -112,7 +112,7 @@ if(!isset($_SESSION['user'])){
                     <a href="manage-teacher.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Teachers </a>  
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="card text-center p-4">
                     <div class="icon">📚</div>
                     <h4>Courses</h4>
@@ -120,12 +120,20 @@ if(!isset($_SESSION['user'])){
                     <a href="manage-courses.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Courses</a>  
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-6">
                 <div class="card text-center p-4">
                     <div class="icon">📊</div>
                     <h4>Results</h4>
                     <p>Manage Results</p> 
                     <a href="manage-result.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Results</a>  
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="card text-center p-4">
+                    <div class="icon"></div>
+                    <h4>Users</h4>
+                    <p>Manage Users</p> 
+                    <a href="" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Results</a>  
                 </div>
             </div>
         </div>

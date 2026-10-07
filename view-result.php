@@ -6,22 +6,31 @@ if(!isset($_SESSION['user'])){
     exit;
 }
 
-$db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", ""); 
-                          // 取得 Results 表的所有资料
-                          // 取得学生名字，并命名为 student_name
-                          // 取得课程名字，并命名为 course_name
-                          // 从 results 表取得资料
-                          // 连接 Result 和 Student
-$statement = $db->prepare("SELECT results.*, 
-                            student.name AS student_name,
-                            courses.name AS course_name
-                            FROM results
-                            JOIN student ON results.student_id = student.id
-                            JOIN courses ON results.course_id = courses.id
-                        ");
-$statement->execute();
-$results = $statement->fetchAll(PDO::FETCH_ASSOC); // 取得所有 Result 资料
+$db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");  // connect database
 
+$user = $_SESSION['user']; // 获取登录用户
+
+                    // 获取 Result ID
+                    // 获取学生名字，并叫它 student_name
+                    // 获取分数
+                //FROM results: 从 results table 获取资料
+                // 连接 results 和 student table
+                // 只找指定学生的 Result
+$statement = $db->prepare("
+                    SELECT 
+                        results.id,
+                        student.name AS student_name,
+                        courses.name AS course_name,
+                        results.marks,
+                        results.grade
+                    FROM results
+                    JOIN student ON results.student_id = student.id
+                    JOIN courses ON results.course_id = courses.id
+                    WHERE student.name = ?
+                    ");
+$statement->execute([$user['username']]);// 执行 SQL
+           // SQL query
+$results = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有找到的 Result // PDO::FETCH_ASSOC: 用字段名称来读取资料
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,69 +43,68 @@ $results = $statement->fetchAll(PDO::FETCH_ASSOC); // 取得所有 Result 资料
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         body{
-            background-color: #eff6ff;
+            background-color: #f1f5f9;
         }
-        .title{
-            color: #1e40af;
-            font-weight: bold;
-        }
-        .description{
-            color: #64748b;
-        }
-        .result-list{
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-        }
+        .result-card{ 
+            border: none; 
+            border-radius: 20px; 
+            padding: 30px; 
+        } 
+        h1{ 
+            color: #1e3a8a; 
+            font-weight: bold; 
+            margin-bottom: 25px; 
+        } 
         .table thead th{
-            background: #1e40af;
+            background-color: #1e3a8a;
             color: white;
-            padding: 10px;
-        }
-        .table tbody td{  
-            padding: 15px;
-             vertical-align: middle; /* make center */ 
-        }
-        .table tbody tr:hover td{ 
-            background-color: #99d0e9; 
-            color: white;
+        } 
+        .grade{ 
+            font-weight: bold; 
+            color: #2563eb; 
         }
     </style>
 </head>
 <body>
     <div class="container py-5">
-        <h1 class="title">Manage Result</h1>
-        <p class="description">Manage student Result Information</p>
-        <div class="result-list">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>Student Result</h4>
-                <div>
-                    <a href="users.php" class="btn btn-outline-danger">Back</a>
-                </div>        
+        <div class="card result-card">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="mb-0">My Results</h1>
+
+                    <a href="grade-book.php" class="btn btn-outline-info">
+                        <i class="bi bi-book"></i> Grade Book
+                    </a>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Student_Name</th>
-                        <th>Courses</th>
-                        <th>Score</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($results as $result): ?> <!-- 一个一个读取 Result -->
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
                         <tr>
-                            <td><?= $result['id'] ?></td>
-                            <td><?= $result['student_name'] ?></td> <!-- dispaly the student name -->
-                            <td><?= $result['course_name'] ?></td>
-                            <td><?= $result['marks'] ?></td> 
-                            <td><?= $result['grade'] ?></td>  
+                            <th>Student Name</th>
+                            <th>Course</th>
+                            <th>Marks</th>
+                            <th>Grade</th> 
                         </tr>
-                        <?php endforeach; ?>
+                    </thead>
+                    <tbody>
+                        <?php foreach($results as $result): ?> <!-- 一个一个读取 Result -->
+                            <tr>
+                                <td><?= $result['student_name'] ?></td> <!-- 显示学生名字 --> 
+                                <td><?= $result['course_name'] ?></td>
+                                <td><?= $result['marks'] ?></td>
+                                <td>
+                                    <span class="grade">
+                                        <?= $result['grade'] ?>
+                                    </span>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
+            <div class="text-center">
+                <a href="users.php" class="btn btn-outline-danger">Back</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

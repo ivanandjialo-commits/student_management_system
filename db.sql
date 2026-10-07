@@ -48,7 +48,8 @@ CREATE TABLE users (
 );
 
 -- INSERT
-INSERT INTO `student_management_system`.`users` (`username`, `email`, `password`, `role`) VALUES ('Admin', 'admin@example.com', '12345', 'admin');
+INSERT INTO `student_management_system`.`users` (`username`, `email`, `password`, `role`) VALUES ('ivan kb', 'ivankb75@gmail.com', '1234567', 'users');
+INSERT INTO `student_management_system`.`users` (`username`, `email`, `password`, `role`) VALUES ('sana', 'sana@example.com', '1234', 'users');
 INSERT INTO `student_management_system`.`users` (`username`, `email`, `password`, `role`) VALUES ('Admin', 'admin@example.com', '123456', 'admin');
 
 INSERT INTO student (`name`, `email`, `phone`) VALUES ('Sean', 'sean@example.com', '012-3456789');
