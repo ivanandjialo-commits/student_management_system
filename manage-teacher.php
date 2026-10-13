@@ -18,9 +18,10 @@ if(isset($_GET['delete'])){ //检查 URL 有没有 delete =？
     exit;
 }
 
-$statement = $db->prepare("SELECT * FROM teachers"); // get data
+$statement = $db->prepare("SELECT * FROM teachers"); // 准备获取 teachers 表的所有资料
 $statement->execute(); // run the sql
-$teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get data using column names
+                        // PDO::FETCH_ASSOC ：get data using column names
+$teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有 Teacher 资料
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,13 +124,14 @@ $teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
                 <tbody>
                      <?php foreach($teachers as $teacher): ?> <!-- 一个一个显示老师 -->
                         <tr>
-                            <td><?= $teacher['id'] ?></td> <!-- show the teacher name -->
+                            <td><?= $teacher['id'] ?></td> <!-- 显示 Teacher ID -->
                             <td><?= $teacher['name'] ?></td>
                             <td><?= $teacher['email'] ?></td>
                             <td><?= $teacher['phone'] ?></td>
                             <td>
                             <a href="teacher-edit.php?id=<?= $teacher['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="manage-teacher.php?delete=<?= $teacher['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>  <!-- ?delete= tell php, get the id  -->
+                            <a href="manage-teacher.php?delete=<?= $teacher['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>  
+                                                        <!-- 把 Teacher ID 放进 URL，用来删除指定 Teacher -->
                             </td>
                         </tr>
                         <?php endforeach; ?> <!-- foreach loop  -->

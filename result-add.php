@@ -35,19 +35,44 @@ if(isset($_POST['add'])){ // 检查用户有没有按 Add Resul
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
     body{
-        background-color: #eff6ff;
+        background: #f1f5f9;
+        font-family: Arial, sans-serif;
     }
+
+    .container{
+        max-width: 800px;
+    }
+
     .title{
         color: #1e40af;
         font-weight: bold;
     }
+
     .description{
         color: #64748b;
+        margin-bottom: 25px;
     }
-    .student-box{
+
+    .result-box{
         background: white;
-        padding: 25px;
-        border-radius: 20px;
+        padding: 30px;
+        border-radius: 15px;
+    }
+
+    label{
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #334155;
+    }
+
+    .form-control{
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    form .btn{
+        padding: 8px 20px;
+        border-radius: 8px;
     }
     </style>
 </head>
@@ -55,7 +80,7 @@ if(isset($_POST['add'])){ // 检查用户有没有按 Add Resul
     <div class="container py-5">
         <h1 class="title">Add Result</h1>
         <p class="description">Add result information</p>
-        <div class="student-box">
+        <div class="result-box">
             <form method="POST">
                 <div class="mb-3">
                     <label for="">Student_Name:</label>

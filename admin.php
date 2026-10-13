@@ -21,7 +21,7 @@ if(!isset($_SESSION['user'])){
             font-family: Arial, sans-serif;
         }
         .container{
-            max-width: 1150px;
+            max-width: 1250px;
         }
         .title{
             color: #1e3a8a;
@@ -43,11 +43,11 @@ if(!isset($_SESSION['user'])){
             font-size: 45px;
             margin-bottom: 10px;
         }
-        .logout{
+        /* .logout{
             border-radius: 10px;
             padding: 10px;
             width: 200px;
-        }
+        } */
         .welcome{
             color: white;
             font-weight: bold;
@@ -81,9 +81,38 @@ if(!isset($_SESSION['user'])){
             border-radius: 10px;
             padding: 10px;
         }
+        .profile{
+            position: absolute;
+            top: 25px;
+            right: 60px;
+        }
+        .profile .btn{
+            background: white;
+            color: #1e3a8a;
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            padding: 10px 15px;
+        }
+        .profile .dropdown-item:hover{
+            background: #eff6ff;
+        }
     </style>
 </head>
 <body>
+    <div class="profile dropdown">
+        <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle"></i>
+            <?php echo $_SESSION['user']['username']; ?>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="profile.php" class="dropdown-item">
+                <i class="bi bi-person me-2"></i>My Profile</a>
+            </li>
+            <li><a href="logout.php" class="dropdown-item">
+                <i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
     <div class="container py-5">
         <div class="text-center">
             <h1 class="title">Student Management System</h1>
@@ -98,7 +127,7 @@ if(!isset($_SESSION['user'])){
         <div class="row g-4">
             <div class="col-md-6 col-lg-4">
                 <div class="card text-center p-4">
-                    <div class="icon">👨‍🎓</div>
+                    <div class="icon"><i class="bi bi-person-vcard-fill"></i></div>
                     <h4>Students</h4>
                     <p>Manage students</p> 
                     <a href="manage-student.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Students</a>  
@@ -106,7 +135,7 @@ if(!isset($_SESSION['user'])){
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="card text-center p-4">
-                    <div class="icon">👨‍🏫</div>
+                    <div class="icon"><i class="bi bi-person-workspace"></i></div>
                     <h4>Teachers</h4>
                     <p>Manage teachers</p> 
                     <a href="manage-teacher.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Teachers </a>  
@@ -114,7 +143,7 @@ if(!isset($_SESSION['user'])){
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="card text-center p-4">
-                    <div class="icon">📚</div>
+                    <div class="icon"><i class="bi bi-book-fill"></i></div>
                     <h4>Courses</h4>
                     <p>Manage Courses</p> 
                     <a href="manage-courses.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Courses</a>  
@@ -122,7 +151,7 @@ if(!isset($_SESSION['user'])){
             </div>
             <div class="col-md-6 col-lg-6">
                 <div class="card text-center p-4">
-                    <div class="icon">📊</div>
+                    <div class="icon"><i class="bi bi-bar-chart-fill"></i></div>
                     <h4>Results</h4>
                     <p>Manage Results</p> 
                     <a href="manage-result.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Results</a>  
@@ -130,15 +159,12 @@ if(!isset($_SESSION['user'])){
             </div>
             <div class="col-md-6 col-lg-6">
                 <div class="card text-center p-4">
-                    <div class="icon"></div>
+                    <div class="icon"><i class="bi bi-people-fill"></i></div>
                     <h4>Users</h4>
                     <p>Manage Users</p> 
-                    <a href="" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Results</a>  
+                    <a href="manage-user.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> Manage Results</a>  
                 </div>
             </div>
-        </div>
-        <div class="text-center mt-5">
-            <a href="logout.php" class="btn btn-outline-danger logout"><i class="bi bi-box-arrow-in-right"></i> Logout</a>
         </div>
     </div>
 </body>

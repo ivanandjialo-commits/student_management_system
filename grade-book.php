@@ -63,7 +63,7 @@ if(!isset($_SESSION['user'])){
                             <span class="grade">A</span> : 95 - 100
                         </div>
                         <div class="list-group-item">
-                            <span class="grade">A-</span> : 90 - 94-99
+                            <span class="grade">A-</span> : 90 - 94.99
                         </div>
                         <div class="list-group-item">
                             <span class="grade">B+</span> : 85.00 - 89.99
@@ -87,10 +87,12 @@ if(!isset($_SESSION['user'])){
                 </div>
                 <br>
                 <div class="text-center">
-                    <a href="manage-result.php" class="back-btn">Back</a>
+                                <!-- 获取当前登录用户的角色 -->
+                    <a href="<?= $_SESSION['user']['role'] == 'admin' ? 'manage-result.php' : 'view-result.php' ?>" class="back-btn">Back</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+<!-- <p></p> -->

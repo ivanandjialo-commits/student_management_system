@@ -86,14 +86,38 @@ if(!isset($_SESSION['user'])){
     .card .btn:hover{
         background: #7e22ce;
     }
-
-    .logout{
-        width: 180px;
-        border-radius: 8px;
+    .profile{
+        position: absolute;
+        top: 25px;
+        right: 60px;
+    }
+    .profile .btn{
+        background: white;
+        color: #1e3a8a;
+        border: 1px solid #dbeafe;
+        border-radius: 12px;
+        padding: 10px 15px;
+    }
+    .profile .dropdown-item:hover{
+        background: #eff6ff;
     }
 </style>
 </head>
 <body>
+    <div class="profile dropdown">
+        <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle"></i>
+            <?php echo $_SESSION['user']['username']; ?>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="profile.php" class="dropdown-item">
+                <i class="bi bi-person me-2"></i>My Profile</a>
+            </li>
+            <li><a href="logout.php" class="dropdown-item">
+                <i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
     <div class="container py-5">
         <div class="text-center">
             <h1 class="title">Student Management System</h1>
@@ -138,9 +162,6 @@ if(!isset($_SESSION['user'])){
                     <a href="view-result.php" class="btn btn-primary w-100"><i class="bi bi-arrow-right"></i> View Results</a>  
                 </div>
             </div>
-        </div>
-        <div class="text-center mt-5">
-            <a href="logout.php" class="btn btn-outline-danger logout"><i class="bi bi-box-arrow-in-right"></i> Logout</a>
         </div>
     </div>
 </body>

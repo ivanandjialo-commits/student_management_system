@@ -9,25 +9,27 @@ if(!isset($_SESSION['user'])){
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
 if(isset($_GET['delete'])){ //检查 URL 有没有 delete = ？
-    $id = $_GET['delete']; // get course id
+    $id = $_GET['delete']; // 取得要删除的 course ID
 
-    $statement = $db->prepare("DELETE FROM courses WHERE id = ?"); // prepare SQL
+    $statement = $db->prepare("DELETE FROM courses WHERE id = ?"); // 准备删除 courses 的 SQL
     $statement->execute([$id]); // 执行删除
 
     header("Location: manage-courses.php");
     exit;
 }
-                           // get data from courses
+                           // 获取 courses 表的所有资料
                            // teachers.name AS teacher_name = 获取老师的名字，并把它叫做 teacher_name
-                           // get data from courses table
-                           // 连接 teachers 表, 用 teacher_id to find the matching teachers
+                           // 从 courses 表获取资料
+                           // JOIN teachers：连接 teachers 表, 
+                           // 用 teacher_id 和 teachers.id 来连接两个表
 $statement = $db->prepare("SELECT courses.*,  
                             teachers.name AS teacher_name 
                             FROM courses
-                            JOIN teachers ON courses.teacher_id = teachers.id
+                            JOIN teachers 
+                            ON courses.teacher_id = teachers.id
 ");
-$statement->execute(); // run the SQL
-$courses = $statement->fetchAll(PDO::FETCH_ASSOC); // get all data
+$statement->execute(); // 执行 SQL
+$courses = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有 courses 资料
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,7 +135,8 @@ $courses = $statement->fetchAll(PDO::FETCH_ASSOC); // get all data
                             <td><?= $course['teacher_name']?></td>
                             <td>
                                 <a href="course-edit.php?id=<?= $course['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                                <a href="manage-courses.php?delete=<?= $course['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a> <!-- 删除这个课程，并把 ID 传给 PHP -->
+                                <a href="manage-courses.php?delete=<?= $course['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a> 
+                                                        <!-- 删除这个课程，并把 ID 传给 PHP -->
                             </td>
                         </tr>
                         <?php endforeach; ?> <!-- foreach loop  -->

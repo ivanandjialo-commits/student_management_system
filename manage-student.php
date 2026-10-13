@@ -11,16 +11,17 @@ $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "
 if(isset($_GET['delete'])){ //检查 URL 有没有 delete = ？
     $id = $_GET['delete']; // 取得要删除的 student ID
 
-    $statement = $db->prepare("DELETE FROM student WHERE id = ?"); // prepare to delete
+    $statement = $db->prepare("DELETE FROM student WHERE id = ?"); // 准备删除 Student 的 SQL
     $statement->execute([$id]); // 执行删除
 
     header("Location: manage-student.php");
     exit;
 }
 
-$statement = $db->prepare("SELECT * FROM student"); // get data
-$statement->execute(); // run the sql
-$students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get data using column names
+$statement = $db->prepare("SELECT * FROM student"); // 准备获取所有 Student 的 SQL
+$statement->execute(); // 执行 SQL
+                                //  PDO::FETCH_ASSOC ：get data using column names
+$students = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有 Student 资料
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,13 +124,14 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
                 <tbody>
                      <?php foreach($students as $student): ?> <!-- 一个一个显示老师 -->
                         <tr>
-                            <td><?= $student['id'] ?></td> <!-- show the student name -->
+                            <td><?= $student['id'] ?></td> <!-- 显示 Student ID -->
                             <td><?= $student['name'] ?></td>
                             <td><?= $student['email'] ?></td>
                             <td><?= $student['phone'] ?></td>
                             <td>
                             <a href="student-edit.php?id=<?= $student['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="manage-student.php?delete=<?= $student['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>  <!-- ?delete= tell php, get the id  -->
+                            <a href="manage-student.php?delete=<?= $student['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>
+                                                        <!-- 把 Student ID 放进 URL，用来删除指定 Student  -->
                             </td>
                         </tr>
                         <?php endforeach; ?> <!-- foreach loop  -->

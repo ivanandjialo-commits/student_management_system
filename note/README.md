@@ -110,35 +110,35 @@ no problem
 
 ---
 
-## Day 6 — Date: ____
+## Day 6 — Date: __8/10/2026__
 
 ### What I planned to do today
-
+do manage-user.php 
 
 ### What I actually did
-
+do manage-user.php
 
 ### Blockers / Challenges
-
+no
 
 ### What I learned
-
+php
 
 ---
 
-## Day 7 — Date: ____
+## Day 7 — Date: _12/10/2026__
 
 ### What I planned to do today
-
+profile button 
 
 ### What I actually did
-
+do profile.php
 
 ### Blockers / Challenges
-
+no
 
 ### What I learned
-
+php
 
 ---
 
