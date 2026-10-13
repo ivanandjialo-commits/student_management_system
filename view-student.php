@@ -8,9 +8,9 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-$statement = $db->prepare("SELECT * FROM student"); // get data
-$statement->execute(); // run the sql
-$students = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get data using column names
+$statement = $db->prepare("SELECT * FROM student"); // 获取所有学生资料
+$statement->execute(); // 执行 SQL
+$students = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有资料
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -8,9 +8,9 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-$statement = $db->prepare("SELECT * FROM teachers"); // get data
-$statement->execute(); // run the sql
-$teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get data using column names
+$statement = $db->prepare("SELECT * FROM teachers"); // 获取所有老师资料
+$statement->execute(); // 执行 SQL
+$teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有资料 // PDO::FETCH_ASSOC ：get data using column names
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,8 +79,8 @@ $teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC ：get d
                 <tbody>
                      <?php foreach($teachers as $teacher): ?> <!-- 一个一个显示老师 -->
                         <tr>
-                            <td><?= $teacher['id'] ?></td> <!-- show the teacher name -->
-                            <td><?= $teacher['name'] ?></td>
+                            <td><?= $teacher['id'] ?></td> 
+                            <td><?= $teacher['name'] ?></td> <!-- 显示老师名字 -->
                             <td><?= $teacher['email'] ?></td>
                             <td><?= $teacher['phone'] ?></td>
                         </tr>

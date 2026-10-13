@@ -11,8 +11,8 @@ $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "
 $id = $_GET['id']; // 从 URL 获取 course 的 ID
 
 $statement = $db->prepare("SELECT * FROM courses WHERE id = ?"); // 准备 SQL，找出指定 ID 的 course。
-$statement->execute([$id]); // run SQL, put id in ?
-$course = $statement->fetch(PDO::FETCH_ASSOC); // get data from SQL
+$statement->execute([$id]); // 执行 SQL
+$course = $statement->fetch(PDO::FETCH_ASSOC); // 从数据库拿出一条课程资料
 
 if(isset($_POST['edit'])){ // 检查用户有没有按 Edit
     $name = $_POST['name']; // 获取用户输入的 Course Name

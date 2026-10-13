@@ -8,8 +8,8 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", ""); 
 
-if(isset($_GET['delete'])){ // 检查 URL 有没有 delete = ？
-    $id = $_GET['delete']; // 取得要删除的 Result ID
+if(isset($_GET['delete'])){ // 检查 URL 有没有 delete 
+    $id = $_GET['delete']; // 获取要删除的 Result ID
 
     $statement = $db->prepare("DELETE FROM results WHERE id = ?"); // 准备删除指定的 Result
     $statement->execute([$id]); // 执行删除
@@ -21,7 +21,7 @@ if(isset($_GET['delete'])){ // 检查 URL 有没有 delete = ？
                           // 取得学生名字，并命名为 student_name
                           // 取得课程名字，并命名为 course_name
                           // 从 results 表取得资料
-                          // 连接 Result 和 Student
+                          // (Join)根据course ID 连接 results 和 courses 表
 $statement = $db->prepare("SELECT results.*, 
                             student.name AS student_name,
                             courses.name AS course_name
@@ -141,9 +141,10 @@ $results = $statement->fetchAll(PDO::FETCH_ASSOC); // 取得所有 Result 资料
                             <td><?= $result['marks'] ?></td> 
                             <td><?= $result['grade'] ?></td> 
                             <td>
+                                                        <!-- 把 Result ID 放进 URL，传给编辑页面 -->
                                 <a href="result-edit.php?id=<?= $result['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                                 <a href="manage-result.php?delete=<?= $result['id'] ?>" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
-                                                           <!-- 把 Result ID 放进 URL，然后删除 -->
+                                                        <!-- 把 Result ID 放进 URL，然后删除 -->
                             </td>  
                         </tr>
                         <?php endforeach; ?>

@@ -102,7 +102,7 @@ if(!isset($_SESSION['user'])){
     <div class="profile dropdown">
         <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
             <i class="bi bi-person-circle"></i>
-            <?php echo $_SESSION['user']['username']; ?>
+            <?php echo $_SESSION['user']['username']; ?> <!-- 显示当前登录用户的用户名 -->
         </button>
         <ul class="dropdown-menu">
             <li><a href="profile.php" class="dropdown-item">
@@ -169,3 +169,4 @@ if(!isset($_SESSION['user'])){
     </div>
 </body>
 </html>
+<!-- <p></p> -->

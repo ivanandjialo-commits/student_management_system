@@ -8,20 +8,20 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-if(isset($_GET['delete'])){ //检查 URL 有没有 delete = ？
-    $id = $_GET['delete']; // 取得要删除的 course ID
+if(isset($_GET['delete'])){ // 检查 URL 有没有删除 ID
+    $id = $_GET['delete']; // 获取要删除的课程 ID
 
-    $statement = $db->prepare("DELETE FROM courses WHERE id = ?"); // 准备删除 courses 的 SQL
+    $statement = $db->prepare("DELETE FROM courses WHERE id = ?"); // 准备删除指定 ID 的课程
     $statement->execute([$id]); // 执行删除
 
     header("Location: manage-courses.php");
     exit;
 }
                            // 获取 courses 表的所有资料
-                           // teachers.name AS teacher_name = 获取老师的名字，并把它叫做 teacher_name
+                           // 获取老师名字，并命名为 teacher_name
                            // 从 courses 表获取资料
                            // JOIN teachers：连接 teachers 表, 
-                           // 用 teacher_id 和 teachers.id 来连接两个表
+                           // 用 teacher_id 匹配老师的 id
 $statement = $db->prepare("SELECT courses.*,  
                             teachers.name AS teacher_name 
                             FROM courses
@@ -130,13 +130,14 @@ $courses = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有 courses 资�
                     <?php foreach($courses as $course): ?> <!-- 一个一个显示老师 -->
                         <tr>
                             <td><?= $course['id']?></td>
-                            <td><?= $course['name']?></td> <!-- show the course name -->
+                            <td><?= $course['name']?></td> <!-- 显示课程的名字 -->
                             <td><?= $course['description']?></td>
                             <td><?= $course['teacher_name']?></td>
                             <td>
+                                                        <!-- 传课程 ID 给编辑页面 -->
                                 <a href="course-edit.php?id=<?= $course['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                                 <a href="manage-courses.php?delete=<?= $course['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a> 
-                                                        <!-- 删除这个课程，并把 ID 传给 PHP -->
+                                                        <!-- 把课程 ID 放进 URL，用来删除课程 -->
                             </td>
                         </tr>
                         <?php endforeach; ?> <!-- foreach loop  -->
@@ -146,3 +147,4 @@ $courses = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有 courses 资�
     </div>
 </body>
 </html>
+<!-- <p></p> -->

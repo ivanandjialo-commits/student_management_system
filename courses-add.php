@@ -6,17 +6,17 @@ if(!isset($_SESSION['user'])){
     exit;
 }
 
-$db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
-                 // run sql                 // get data from ... ?
-$teachers = $db->query("SELECT id , name FROM teachers")->fetchAll(PDO::FETCH_ASSOC); // 从 teachers table 取得老师的 ID 和名字
+$db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", ""); // connect database
+                 // run sql                 // 从 teachers 表获取资料
+$teachers = $db->query("SELECT id , name FROM teachers")->fetchAll(PDO::FETCH_ASSOC); // 获取所有老师的 ID 和名字
 
 if(isset($_POST['add'])){ // 检查 Add button 有没有被按?
-    $name = $_POST['name']; // get the name 
+    $name = $_POST['name']; // 获取课程名称
     $description = $_POST['description'];
     $teacher_id = $_POST['teacher_id'];
 
-    $statement = $db->prepare("INSERT INTO courses (name, description, teacher_id) VALUES (?, ?, ?)");
-    $statement->execute([$name, $description, $teacher_id]); // run SQL，把资料加入数据库
+    $statement = $db->prepare("INSERT INTO courses (name, description, teacher_id) VALUES (?, ?, ?)"); // 准备 SQL
+    $statement->execute([$name, $description, $teacher_id]); // run SQL，保存课程资料
 
     header("Location: manage-courses.php");  
     exit; // stop script

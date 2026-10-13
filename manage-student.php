@@ -129,6 +129,7 @@ $students = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有 Student 资�
                             <td><?= $student['email'] ?></td>
                             <td><?= $student['phone'] ?></td>
                             <td>
+                                                       <!--  把 student ID 放进 URL，传给编辑页面 -->
                             <a href="student-edit.php?id=<?= $student['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                             <a href="manage-student.php?delete=<?= $student['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>
                                                         <!-- 把 Student ID 放进 URL，用来删除指定 Student  -->

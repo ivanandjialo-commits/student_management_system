@@ -126,6 +126,7 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有 Users
                                 <td><?= $user['email'] ?></td>
                                 <td><?= $user['role'] ?></td>
                                 <td>
+                                                        <!--  把 user ID 放进 URL，传给编辑页面 -->
                                     <a href="user-edit.php?id=<?= $user['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                                     <a href="manage-user.php?delete=<?= $user['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>
                                                         <!-- 把 User ID 放进 URL，用来删除指定 User -->

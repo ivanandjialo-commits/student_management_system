@@ -8,19 +8,19 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root","");
 
-$id = $_GET['id']; // URL ?id=1
+$id = $_GET['id']; // 获取 URL 中的老师 ID // URL ?id=1
 
-$statement = $db->prepare("SELECT * FROM teachers WHERE id = ?"); // prepare SQL find ID
-$statement->execute([$id]); // put ID in ?
-$teacher = $statement->fetch(PDO::FETCH_ASSOC);  // get teacher data
+$statement = $db->prepare("SELECT * FROM teachers WHERE id = ?"); // 准备SQL 根据 ID 找老师资料
+$statement->execute([$id]); // 执行 SQL
+$teacher = $statement->fetch(PDO::FETCH_ASSOC);  // 获取一位老师的资料
 
-if(isset($_POST['edit'])){
-    $name = $_POST['name']; // get the name update
+if(isset($_POST['edit'])){ // 检查是否点击 Edit 按钮
+    $name = $_POST['name']; // 获取输入的老师名字
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
-    $statement = $db->prepare("UPDATE teachers SET name = ? , email = ? , phone = ? WHERE id = ?"); // prepare SQL
-    $statement->execute([$name, $email, $phone, $id]);  // put values in ?
+    $statement = $db->prepare("UPDATE teachers SET name = ? , email = ? , phone = ? WHERE id = ?"); // 准备更新老师资料
+    $statement->execute([$name, $email, $phone, $id]);  // 执行 SQL
 
     header("Location: manage-teacher.php");
     exit;
@@ -86,6 +86,7 @@ if(isset($_POST['edit'])){
                 <div class="mb-3">
                     <label for="">Name:</label>
                     <input type="text" name="name" class="form-control" value="<?= $teacher['name'] ?>">
+                                                                         <!-- 显示老师原本的名字 -->
                 </div>
                 <div class="mb-3">
                     <label for="">Email:</label>
@@ -102,3 +103,4 @@ if(isset($_POST['edit'])){
     </div>
 </body>
 </html>
+<!-- <p></p> -->

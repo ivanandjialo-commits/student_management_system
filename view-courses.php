@@ -8,17 +8,19 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-                           // get data from courses
-                           // teachers.name AS teacher_name = 获取老师的名字，并把它叫做 teacher_name
-                           // get data from courses table
-                           // 连接 teachers 表, 用 teacher_id to find the matching teachers
+                           // 获取所有course 资料
+                           // 获取老师名字，并命名为 teacher_name
+                           // 从 course 表获取资料
+                           // 连接 teachers 表
+                           // 用 teacher_id 匹配老师的 id
 $statement = $db->prepare("SELECT courses.*,  
                             teachers.name AS teacher_name 
                             FROM courses
-                            JOIN teachers ON courses.teacher_id = teachers.id
+                            JOIN teachers 
+                            ON courses.teacher_id = teachers.id
 ");
-$statement->execute(); // run the SQL
-$courses = $statement->fetchAll(PDO::FETCH_ASSOC); // get all data
+$statement->execute(); // 执行 SQL
+$courses = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有课程资料
 ?>
 <!DOCTYPE html>
 <html lang="en">

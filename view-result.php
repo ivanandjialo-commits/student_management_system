@@ -8,14 +8,14 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");  // connect database
 
-$user = $_SESSION['user']; // 获取登录用户
+$user = $_SESSION['user']; // 获取当前登录用户的资料
 
                     // 获取 Result ID
                     // 获取学生名字，并叫它 student_name
-                    // 获取分数
-                //FROM results: 从 results table 获取资料
-                // 连接 results 和 student table
-                // 只找指定学生的 Result
+                    // 获取分数 和 等级
+                // 从 results 表获取资料
+                // 连接学生表，并匹配学生 ID
+                // 只找指定(specified)学生的 Result
 $statement = $db->prepare("
                     SELECT 
                         results.id,
@@ -29,7 +29,6 @@ $statement = $db->prepare("
                     WHERE student.name = ?
                     ");
 $statement->execute([$user['username']]);// 执行 SQL
-           // SQL query
 $results = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有找到的 Result // PDO::FETCH_ASSOC: 用字段名称来读取资料
 ?>
 <!DOCTYPE html>

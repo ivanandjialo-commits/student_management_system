@@ -6,15 +6,15 @@ if(!isset($_SESSION['user'])){
     exit;
 }
 
-$db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
+$db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", ""); // connect database
 
-if(isset($_POST['add'])){
-    $name = $_POST['name']; // get the name by user
+if(isset($_POST['add'])){ // 检查用户是否点击 Add 按钮
+    $name = $_POST['name']; // 获取输入的老师名字
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
-    $statement = $db->prepare("INSERT INTO teachers (name, email, phone) VALUES (?, ?, ?)"); // prepare the SQL
-    $statement->execute([$name, $email, $phone]); // put data in ? 
+    $statement = $db->prepare("INSERT INTO teachers (name, email, phone) VALUES (?, ?, ?)"); // 准备新增老师
+    $statement->execute([$name, $email, $phone]); // 执行 SQL
 
     header("Location: manage-teacher.php");
     exit;

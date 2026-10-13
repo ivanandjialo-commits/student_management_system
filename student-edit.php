@@ -8,19 +8,19 @@ if(!isset($_SESSION['user'])){
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system", "root", "");
 
-$id = $_GET['id']; // URL ?id=1
+$id = $_GET['id']; // 获取 URL 中的学生 ID
 
-$statement = $db->prepare("SELECT * FROM student WHERE id = ?"); // find the id
-$statement->execute([$id]); // put ID in ?
-$student = $statement->fetch(PDO::FETCH_ASSOC); // $student: store data fetch: get data
+$statement = $db->prepare("SELECT * FROM student WHERE id = ?"); // 准备根据 ID 找学生
+$statement->execute([$id]); // 执行 SQL
+$student = $statement->fetch(PDO::FETCH_ASSOC); // 获取一位学生的资料
 
-if(isset($_POST['edit'])){ // check button clicked?
-    $name = $_POST['name']; // get edit data
+if(isset($_POST['edit'])){ // 检查是否点击 Edit 按钮
+    $name = $_POST['name']; // 获取用户输入的 Name
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
-    $statement = $db->prepare("UPDATE student SET name = ? , email = ? , phone = ? WHERE id = ?"); // PREPARE update data
-    $statement->execute([$name, $email, $phone, $id]); // put data in ? 
+    $statement = $db->prepare("UPDATE student SET name = ? , email = ? , phone = ? WHERE id = ?"); // 准备更新学生资料的 SQL
+    $statement->execute([$name, $email, $phone, $id]); // 执行 SQL
 
     header("Location: manage-student.php");
     exit;
@@ -85,7 +85,8 @@ if(isset($_POST['edit'])){ // check button clicked?
             <form method="POST">
                 <div class="mb-3"> <!-- 16px -->
                     <label for="form-label">Name:</label>
-                    <input type="text" name="name" class="form-control" value="<?= $student['name'] ?>" placeholder=""> <!-- value="": 显示原本的学生名字 -->
+                    <input type="text" name="name" class="form-control" value="<?= $student['name'] ?>" placeholder=""> 
+                                                                            <!-- 显示原本的学生名字 -->
                 </div>
                 <div class="mb-3">
                     <label for="form-label">Email:</label>
@@ -95,7 +96,7 @@ if(isset($_POST['edit'])){ // check button clicked?
                     <label for="form-label">Phone:</label>
                     <input type="phone" name="phone" class="form-control" value="<?= $student['phone'] ?>" placeholder="">
                 </div>
-                <button class="btn btn-outline-success" type="submit" name="edit">Edit student</button> <!-- name="edit": gives the button the name edit -->
+                <button class="btn btn-outline-success" type="submit" name="edit">Edit student</button> 
                 <a href="manage-student.php" class="btn btn-outline-danger">Back</a>
             </form>
         </div>

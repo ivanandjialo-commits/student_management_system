@@ -1,22 +1,21 @@
 <?php
-session_start();
+session_start(); //保存登录用户资料
 
 $db = new PDO("mysql:host=localhost;dbname=student_management_system;", "root", ""); // connect database
 
 $error = "";
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){ // 检查 Login Form 有没有使用 POST 提交
+if($_SERVER["REQUEST_METHOD"] == "POST"){ // 检查表单是否使用 POST 提交
 $username = $_POST["username"] ?? ""; // 获取用户输入的 Username // ?? "" = 如果没有 Username，就使用空白
 $password = $_POST["password"] ?? ""; 
 
-    $statement = $db->prepare("SELECT * FROM users WHERE username = ?");  // 准备 SQL，根据 Username 找用户
+    $statement = $db->prepare("SELECT * FROM users WHERE username = ?");  // 准备 SQL，根据 Username 查找用户
     $statement->execute([$username]); // 执行 SQL
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);  // 获取找到的用户资料
        // 用户存在 //检查 Password
-    if($user && password_verify($password, $user['password'])){ // 检查用户存在，而且 Password 正确
-        // 保存用户资料      // 用户资料
-        $_SESSION["user"] = $user;  // 把登录用户资料保存到 Session 
+    if($user && password_verify($password, $user['password'])){ // 检查用户存在(exists)，而且输入的密码正确
+        $_SESSION["user"] = $user;  // 把用户资料保存到 Session
 
         if($user["role"] == "admin"){ // 检查用户是不是 Admin
             header("Location: admin.php");

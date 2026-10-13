@@ -31,7 +31,7 @@ if(isset($_POST['edit'])){ // 检查表单有没有提交
 
         $_SESSION['user']['username'] = $username; // 更新当前登录用户的用户名
 
-        if($_SESSION['user']['role'] == 'admin'){
+        if($_SESSION['user']['role'] == 'admin'){ // 检查用户是不是管理员
             header("Location: admin.php");
         }else{
             header("Location: users.php");

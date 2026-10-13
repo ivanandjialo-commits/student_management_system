@@ -128,7 +128,8 @@ $teachers = $statement->fetchAll(PDO::FETCH_ASSOC); // 获取所有 Teacher 资�
                             <td><?= $teacher['name'] ?></td>
                             <td><?= $teacher['email'] ?></td>
                             <td><?= $teacher['phone'] ?></td>
-                            <td>
+                            <td> 
+                                                      <!--  把 teacher ID 放进 URL，传给编辑页面-->
                             <a href="teacher-edit.php?id=<?= $teacher['id'] ?>" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                             <a href="manage-teacher.php?delete=<?= $teacher['id'] ?>" class="btn btn-outline-warning"><i class="bi bi-trash"></i></a>  
                                                         <!-- 把 Teacher ID 放进 URL，用来删除指定 Teacher -->
